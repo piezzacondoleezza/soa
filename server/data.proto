@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+message Data {
+    string string = 1;
+    repeated int64 array = 2;
+    map<string, int64> dict = 3;
+    int64 int_num = 4;
+    float float_num = 5;
+}

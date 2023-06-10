@@ -1,0 +1,99 @@
+version: "3"
+services:
+  server1:
+    image: evantrushin/server
+    hostname: NATIVE
+    expose:
+      - 9090/udp
+    environment:
+      - PORT=9090
+      - MULTICAST_PORT=10000
+      - MULTICAST_ADRESS=224.3.29.71
+      - SERIALIZATION_TYPE=NATIVE
+
+  server2:
+    image: evantrushin/server
+    hostname: JSON
+    expose:
+      - 9091/udp
+    environment:
+      - PORT=9091
+      - MULTICAST_PORT=10000
+      - MULTICAST_ADRESS=224.3.29.71
+      - SERIALIZATION_TYPE=JSON
+
+  server3:
+    image: evantrushin/server
+    hostname: XML
+    expose:
+      - 9092/udp
+    environment:
+      - PORT=9092
+      - MULTICAST_PORT=10000
+      - MULTICAST_ADRESS=224.3.29.71
+      - SERIALIZATION_TYPE=XML
+
+  server4:
+    image: evantrushin/server
+    hostname: GOOGLE_PROTOBUF
+    expose:
+      - 9093/udp
+    environment:
+      - PORT=9093
+      - MULTICAST_PORT=10000
+      - MULTICAST_ADRESS=224.3.29.71
+      - SERIALIZATION_TYPE=GOOGLE_PROTOBUF
+
+  server5:
+    image: evantrushin/server
+    hostname: APACHE
+    expose:
+      - 9094/udp
+    environment:
+      - PORT=9094
+      - MULTICAST_PORT=10000
+      - MULTICAST_ADRESS=224.3.29.71
+      - SERIALIZATION_TYPE=APACHE
+
+  server6:
+    image: evantrushin/server
+    hostname: YAML
+    expose:
+      - 9095/udp
+    environment:
+      - PORT=9095
+      - MULTICAST_PORT=10000
+      - MULTICAST_ADRESS=224.3.29.71
+      - SERIALIZATION_TYPE=YAML
+
+  server7:
+    image: evantrushin/server
+    hostname: MESSAGEPACK
+    expose:
+      - 9096/udp
+    environment:
+      - PORT=9096
+      - MULTICAST_PORT=10000
+      - MULTICAST_ADRESS=224.3.29.71
+      - SERIALIZATION_TYPE=MESSAGEPACK
+
+  client:
+    image: evantrushin/client
+    expose:
+      - 2000/udp
+    ports:
+      - 2000:2000/udp
+    depends_on:
+      - server1
+      - server2
+      - server3
+      - server4
+      - server5
+      - server6
+      - server7
+    environment:
+      - PORT=2000
+      - MULTICAST_PORT=10000
+      - MULTICAST_ADRESS=224.3.29.71
+
+
